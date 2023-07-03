@@ -23,5 +23,4 @@ if (diaDevacunacion == "lunes"){
     alert("Dia seleccionado incorrecto");
 }
 
-
 let finalizacion = alert("Gracias por solicitar su turno.");
