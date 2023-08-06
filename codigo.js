@@ -23,7 +23,8 @@ const ventas = document.getElementById("ventas");
 
 const autosVenta = [
 { id: 1,
-    nombre: " Gol trend ",
+    nombre:"Gol trend",
+    anio: "Modelo 2016",
     precio: 3000000,
     img: 
     "https://i1.wp.com/www.mundoautomotor.com.ar/web/wp-content/uploads/2012/10/Volkswagen-Gol-Trend-2013-1.jpg?w=1400"
@@ -31,7 +32,8 @@ const autosVenta = [
 },
 {
     id: 2,
-        nombre: " Chevrolet vectra ",
+        nombre: "Chevrolet vectra",
+        anio: "Modelo 2014",
         precio: 2100000,
         img: 
         "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Chevrolet_Vectra_2.4_CD_2010_%2814439978435%29.jpg/1024px-Chevrolet_Vectra_2.4_CD_2010_%2814439978435%29.jpg"
@@ -39,7 +41,8 @@ const autosVenta = [
     },
     
         { id: 3,
-            nombre: "  Ford fiesta " ,
+            nombre:"Ford fiesta",
+            anio: "Modelo 2012",
             precio: 200000,
             img: 
             "https://st5.depositphotos.com/11618586/64369/i/450/depositphotos_643697388-stock-photo-side-turkey-february-09-2023.jpg"
@@ -47,7 +50,8 @@ const autosVenta = [
     },
 
         { id: 4,
-            nombre:  "  Fiat uno" ,
+            nombre:"Fiat uno",
+            anio: "Modelo 2009",
             precio: 900000,
             img: 
             "https://wallpapercave.com/wp/wp9487722.jpg"
@@ -64,7 +68,8 @@ autosVenta.forEach((product)=>{
     content.className = "card";
     content.innerHTML = `
     <img src= "${product.img}">
-    <h3> "${product.nombre}</h3>
+    <h2> "${product.nombre}</h2>
+    <h3> "${product.anio} </h3>
     <p> "${product.precio} $</p>
     `;
     ventas.append(content);
@@ -80,6 +85,7 @@ autosVenta.forEach((product)=>{
             id:product.id,
             img: product.img,
             nombre: product.nombre,
+            ano: product.anio,
             precio: product.precio,
 
 
@@ -122,8 +128,8 @@ const imagenes = document.querySelector("#consola");
 consola.addEventListener("click", () => {
     listado.innerHTML="<li class= 'listado-item'>" + "<a href= 'https://i1.wp.com/www.mundoautomotor.com.ar/web/wp-content/uploads/2012/10/Volkswagen-Gol-Trend-2013-1.jpg?w=1400'> AUTO 1 <a/> Volkswagen gol trend, blanco, precio: 3.000.000  </li>";
     listado.innerHTML+="<li class= 'listado-item'>" + "<a href= 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Chevrolet_Vectra_2.4_CD_2010_%2814439978435%29.jpg/1024px-Chevrolet_Vectra_2.4_CD_2010_%2814439978435%29.jpg'> AUTO 2 <a/> Chevrolet vectra, gris, precio: 2.100.000  </li>";
-    listado.innerHTML+="<li class= 'listado-item'>" + "<a href= 'https://st5.depositphotos.com/11618586/64369/i/450/depositphotos_643697388-stock-photo-side-turkey-february-09-2023.jpg'> AUTO 3 <a/> Ford fiesta, rojo, precio: 2.00.000  </li>";
-    listado.innerHTML+="<li class= 'listado-item'>" + "<a href= 'https://wallpapercave.com/wp/wp9487722.jpg'> AUTO 4 <a/> Fiat uno, gris, precio: 900.000  </li>";
+    listado.innerHTML+="<li class= 'listado-item'>" + "<a href= 'https://st5.depositphotos.com/11618586/64369/i/450/depositphotos_643697388-stock-photo-side-turkey-february-09-2023.jpg'> AUTO 3 <a/> Ford fiesta, gris, precio: 2.00.000  </li>";
+    listado.innerHTML+="<li class= 'listado-item'>" + "<a href= 'https://wallpapercave.com/wp/wp9487722.jpg'> AUTO 4 <a/> Fiat uno, blanco, precio: 900.000  </li>";
 })
 
 
