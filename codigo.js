@@ -10,14 +10,6 @@ localStorage.setItem ("ingresado",usuarioIngresado);
 let usuarioIngresadoEnLocalStorage = localStorage.getItem ("ingresado");
 console.log(usuarioIngresadoEnLocalStorage);
 
-
-
-
-
-
-
-
-
 const ventas = document.getElementById("ventas");
 
 
@@ -64,8 +56,6 @@ const autosVenta = [
 const usarCarrito = document.getElementById("usarCarrito");
 const modalContainer = document.getElementById("modal-container");
 
-
-
 let carrito = [];
 
 autosVenta.forEach((product)=>{
@@ -78,6 +68,8 @@ autosVenta.forEach((product)=>{
     <p> "${product.precio} $</p>
     `;
     ventas.append(content);
+
+
 
     let vendido = document.createElement("button")
     vendido.innerText = "reservar";
@@ -97,11 +89,9 @@ autosVenta.forEach((product)=>{
         });
         console.log(carrito);
     })
-
-
 });
 
-usarCarrito.addEventListener("click", ()=> {
+  usarCarrito.addEventListener("click", ()=> {
     modalContainer.innerHTML = "";
     modalContainer.style.display = "flex";   
    const modalHeader= document.createElement("div");
@@ -134,22 +124,21 @@ usarCarrito.addEventListener("click", ()=> {
 
    `;
    modalContainer.append(carritoContent)
+
+   let borrararticulo = document.createElement("span");
+   borrararticulo.innerText = "(comunicate por whatsApp  116346922. Para coordinar)";
+   borrararticulo.className = "delete-product";
+   carritoContent.append(borrararticulo);
+   
 });
+
 const preciofinal =  carrito.reduce (( acc, marcas)=> acc + marcas.precio, 0);
 const preciofinalbuying = document.createElement("div")
 preciofinalbuying.className = "preciofinal-content"
 preciofinalbuying.innerHTML = ` precio final: ${preciofinal} $ `;
 modalContainer.append(preciofinalbuying);
 
-
 });
-
-
-
-
-
-
-
 
 const alerta  = document.querySelector("#alerta");
 alerta.addEventListener("click" , mostrarAlerta)
@@ -167,8 +156,6 @@ consola.addEventListener("click", () => {
     listado.innerHTML+="<li class= 'listado-item'>" + "<a href= 'auto4'> AUTO 4 <a/> Fiat uno, blanco, precio: 900.000 + </li>";
 })
 
-
-
 const imagenes = document.querySelector("#consola");
 consola.addEventListener("click", () => {
     listado.innerHTML="<li class= 'listado-item'>" + "<a href= 'https://i1.wp.com/www.mundoautomotor.com.ar/web/wp-content/uploads/2012/10/Volkswagen-Gol-Trend-2013-1.jpg?w=1400'> AUTO 1 <a/> Volkswagen gol trend, blanco, precio: 3.000.000  </li>";
@@ -176,9 +163,6 @@ consola.addEventListener("click", () => {
     listado.innerHTML+="<li class= 'listado-item'>" + "<a href= 'https://st5.depositphotos.com/11618586/64369/i/450/depositphotos_643697388-stock-photo-side-turkey-february-09-2023.jpg'> AUTO 3 <a/> Ford fiesta, gris, precio: 2.00.000  </li>";
     listado.innerHTML+="<li class= 'listado-item'>" + "<a href= 'https://wallpapercave.com/wp/wp9487722.jpg'> AUTO 4 <a/> Fiat uno, blanco, precio: 900.000  </li>";
 })
-
-
-
 
 const auto = document.querySelector("#vehiculos");
 const venta = document.querySelectorAll(".ventas");

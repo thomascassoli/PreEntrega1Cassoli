@@ -1,0 +1,29 @@
+[
+    { "id": 1,
+        "nombre ":"Gol trend",
+        " precio ": 300.000
+    
+    },
+    {
+        "id ": 2,
+        "nombre ": "Chevrolet vectra",
+        "precio ": 200.000
+        
+        },
+        
+            {  "id ": 3,
+            "nombre ":"Ford fiesta",
+            
+            "precio ": 210.000
+        
+            
+        },
+    
+            {  "id ": 4,
+            "nombre ":"Fiat uno",
+            " precio ": 900.000          
+            }
+            
+
+    
+    ]
