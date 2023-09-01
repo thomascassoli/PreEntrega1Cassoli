@@ -158,3 +158,6 @@ footer{
   .email {
 	padding: 8%;
   }
+  .delete-product {
+    cursor: pointer;
+  }

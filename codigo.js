@@ -1,14 +1,10 @@
-let usuario = "";
-localStorage.setItem("usuario", usuario);
-
-let usuarioEnLocalStorage = localStorage.getItem("usuario");
-console.log(usuarioEnLocalStorage);
-
-let usuarioIngresado = prompt ("ingrese su nombre");
-localStorage.setItem ("ingresado",usuarioIngresado);
-
-let usuarioIngresadoEnLocalStorage = localStorage.getItem ("ingresado");
-console.log(usuarioIngresadoEnLocalStorage);
+const formulario = document.getElementById("miFormulario");
+formulario.addEventListener("submit", function (event) {
+  event.preventDefault();
+  const usuarioIngresado = formulario.nombre.value;
+  localStorage.setItem("ingresado", usuarioIngresado);
+  formulario.nombre.value = "";
+});
 
 const ventas = document.getElementById("ventas");
 
@@ -19,7 +15,8 @@ const autosVenta = [
     anio: "Modelo 2016",
     precio: 300.000,
     img: 
-    "https://i1.wp.com/www.mundoautomotor.com.ar/web/wp-content/uploads/2012/10/Volkswagen-Gol-Trend-2013-1.jpg?w=1400"
+    "https://i1.wp.com/www.mundoautomotor.com.ar/web/wp-content/uploads/2012/10/Volkswagen-Gol-Trend-2013-1.jpg?w=1400",
+    cantidad: 1,
 
 },
 {
@@ -28,8 +25,8 @@ const autosVenta = [
         anio: "Modelo 2014",
         precio: 200.000,
         img: 
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Chevrolet_Vectra_2.4_CD_2010_%2814439978435%29.jpg/1024px-Chevrolet_Vectra_2.4_CD_2010_%2814439978435%29.jpg"
-    
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Chevrolet_Vectra_2.4_CD_2010_%2814439978435%29.jpg/1024px-Chevrolet_Vectra_2.4_CD_2010_%2814439978435%29.jpg",
+         cantidad: 1,
     },
     
         { id: 3,
@@ -37,8 +34,8 @@ const autosVenta = [
             anio: "Modelo 2012",
             precio: 210.000,
             img: 
-            "https://st5.depositphotos.com/11618586/64369/i/450/depositphotos_643697388-stock-photo-side-turkey-february-09-2023.jpg"
-        
+            "https://st5.depositphotos.com/11618586/64369/i/450/depositphotos_643697388-stock-photo-side-turkey-february-09-2023.jpg",
+             cantidad: 1,
     },
 
         { id: 4,
@@ -46,7 +43,8 @@ const autosVenta = [
             anio: "Modelo 2009",
             precio: 900.000,
             img: 
-            "https://wallpapercave.com/wp/wp9487722.jpg"
+            "https://wallpapercave.com/wp/wp9487722.jpg",
+            cantidad: 1,
         
         }
         
@@ -66,6 +64,7 @@ autosVenta.forEach((product)=>{
     <h2> "${product.nombre}</h2>
     <h3> "${product.anio} </h3>
     <p> "${product.precio} $</p>
+   
     `;
     ventas.append(content);
 
@@ -78,20 +77,33 @@ autosVenta.forEach((product)=>{
     content.append(vendido);
 
     vendido.addEventListener("click", () =>{
+    
+    const repeat = carrito.some ((repeatProduct) => repeatProduct.id === product.id);
+    if (repeat){
+        carrito.map((prod) => {
+            if(prod.id == product.id){
+                prod.cantidad++;
+            }
+        });
+    }else{
+
+
         carrito.push({
             id:product.id,
             img: product.img,
             nombre: product.nombre,
             ano: product.anio,
             precio: product.precio,
-
+            cantidad: product.cantidad,
+        
 
         });
+    }
         console.log(carrito);
-    })
+    });
 });
 
-  usarCarrito.addEventListener("click", ()=> {
+  const pintarCarrito = () => {
     modalContainer.innerHTML = "";
     modalContainer.style.display = "flex";   
    const modalHeader= document.createElement("div");
@@ -121,24 +133,28 @@ autosVenta.forEach((product)=>{
    <h2> "${product.nombre}"</h2>
    <h3> "${product.ano}"</h3>
    <P> ${product.precio}$<p>
+   <p>cantidad: ${product.cantidad}</p>
+   <p>total: ${product.cantidad * product.precio}</p>
 
    `;
    modalContainer.append(carritoContent)
 
    let borrararticulo = document.createElement("span");
-   borrararticulo.innerText = "(comunicate por whatsApp  116346922. Para coordinar)";
+   borrararticulo.innerText = "Eliminar";
    borrararticulo.className = "delete-product";
    carritoContent.append(borrararticulo);
+
+   borrararticulo.addEventListener("click", borrarProducto);
    
 });
 
-const preciofinal =  carrito.reduce (( acc, marcas)=> acc + marcas.precio, 0);
+const preciofinal =  carrito.reduce (( acc, marcas)=> acc + marcas.precio * marcas.cantidad, 0);
 const preciofinalbuying = document.createElement("div")
 preciofinalbuying.className = "preciofinal-content"
 preciofinalbuying.innerHTML = ` precio final: ${preciofinal} $ `;
 modalContainer.append(preciofinalbuying);
 
-});
+};
 
 const alerta  = document.querySelector("#alerta");
 alerta.addEventListener("click" , mostrarAlerta)
@@ -177,3 +193,17 @@ listado.innerHTML+=  "<li class= 'listado-item'>" + vehiculoss[2] + "</li>";
 listado.innerHTML+=  "<li class= 'listado-item'>" + vehiculoss[3] + "</li>";
 
 auto.append(listado); 
+
+usarCarrito.addEventListener("click", pintarCarrito);
+
+
+const borrarProducto =  () => {
+    const foundId = carrito.find((element)=> element.id);
+
+    carrito = carrito.filter((carritoId) => {
+        return carritoId !== foundId;
+    });
+ pintarCarrito();
+
+
+};
